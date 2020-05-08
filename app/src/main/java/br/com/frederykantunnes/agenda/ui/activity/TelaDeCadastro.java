@@ -1,19 +1,18 @@
-package br.com.soulzenyogashala.agenda.ui.activity;
+package br.com.frederykantunnes.agenda.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import br.com.soulzenyogashala.agenda.R;
-import br.com.soulzenyogashala.agenda.dao.AlunoDAO;
-import br.com.soulzenyogashala.agenda.model.Aluno;
+import br.com.frederykantunnes.agenda.R;
+import br.com.frederykantunnes.agenda.dao.AlunoDAO;
+import br.com.frederykantunnes.agenda.model.Aluno;
 
 public class TelaDeCadastro extends AppCompatActivity {
 
@@ -36,6 +35,7 @@ public class TelaDeCadastro extends AppCompatActivity {
         Intent dados = getIntent();
         if (dados.hasExtra("aluno")){
             aluno = (Aluno) getIntent().getSerializableExtra("aluno");
+            assert aluno != null;
             camponome.setText(aluno.getNome());
             campoemail.setText(aluno.getEmail());
             campotelefone.setText(aluno.getTelefone());

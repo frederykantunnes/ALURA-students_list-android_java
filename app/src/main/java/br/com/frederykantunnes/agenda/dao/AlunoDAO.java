@@ -1,9 +1,8 @@
-package br.com.soulzenyogashala.agenda.dao;
+package br.com.frederykantunnes.agenda.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.soulzenyogashala.agenda.model.Aluno;
+import br.com.frederykantunnes.agenda.model.Aluno;
 
 public class AlunoDAO {
     private  final static List<Aluno> alunos = new ArrayList<>();
@@ -31,7 +30,7 @@ public class AlunoDAO {
         alunos.remove(aluno);
     }
 
-    public List<Aluno> todos() {
+    public List<Aluno> getAllObj() {
         return new ArrayList<>(alunos);
     }
 }

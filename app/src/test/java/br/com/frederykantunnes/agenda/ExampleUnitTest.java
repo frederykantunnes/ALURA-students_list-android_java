@@ -1,4 +1,4 @@
-package br.com.soulzenyogashala.agenda;
+package br.com.frederykantunnes.agenda;
 
 import org.junit.Test;
 

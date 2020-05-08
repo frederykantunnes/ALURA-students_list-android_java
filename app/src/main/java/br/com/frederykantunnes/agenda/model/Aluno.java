@@ -1,4 +1,4 @@
-package br.com.soulzenyogashala.agenda.model;
+package br.com.frederykantunnes.agenda.model;
 
 import androidx.annotation.NonNull;
 
