@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,15 @@ public class ListAlunosAdapter extends BaseAdapter {
     private void setAlunoView(int position, View view) {
         TextView nome =  view.findViewById(R.id.item_aluno_nome);
         TextView telefone =  view.findViewById(R.id.item_aluno_telefone);
-        nome.setText(alunos.get(position).getNome());
-        telefone.setText(alunos.get(position).getTelefone());
+        nome.setText(getNomeCompleto(alunos.get(position)));
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        telefone.setText(alunos.get(position).getTelefone() + " - " + format.format(alunos.get(position).getDatadecriacao().getTime()));
+    }
+
+    private String getNomeCompleto(Aluno aluno) {
+        return aluno.getNome()+" "+aluno.getSobrenome();
     }
 
     private View getInflate(ViewGroup parent) {

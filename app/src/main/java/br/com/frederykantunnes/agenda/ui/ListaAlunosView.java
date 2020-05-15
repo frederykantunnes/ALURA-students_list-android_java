@@ -9,10 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
-
 import java.util.List;
-
-import br.com.frederykantunnes.agenda.dao.AlunoDAO;
+import br.com.frederykantunnes.agenda.database.AgendaDatabase;
+import br.com.frederykantunnes.agenda.database.dao.RoomAlunoDAO;
 import br.com.frederykantunnes.agenda.model.Aluno;
 import br.com.frederykantunnes.agenda.ui.activity.TelaDeCadastro;
 import br.com.frederykantunnes.agenda.ui.adapter.ListAlunosAdapter;
@@ -20,12 +19,12 @@ import br.com.frederykantunnes.agenda.ui.adapter.ListAlunosAdapter;
 public class ListaAlunosView {
     private Context context;
     private ListAlunosAdapter adapter;
-    private AlunoDAO dao;
+    private RoomAlunoDAO dao;
 
 
     public ListaAlunosView(Context context) {
         this.context = context;
-        dao = new AlunoDAO();
+        dao =  AgendaDatabase.getInstance(context).getRoomAlunoDAO();
     }
 
     public void confirmaRemocao(@NonNull final MenuItem item) {
@@ -72,6 +71,6 @@ public class ListaAlunosView {
 
 
     public void updateList() {
-        adapter.updateList(dao.getAllObj());
+        adapter.updateList(dao.getAll());
     }
 }

@@ -1,19 +1,37 @@
 package br.com.frederykantunnes.agenda.model;
 
 import androidx.annotation.NonNull;
-
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 import java.io.Serializable;
+import java.util.Calendar;
 
+@Entity
 public class Aluno implements Serializable {
-    private int id = 0;
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String nome;
     private String telefone;
     private String email;
+    private String sobrenome;
+    private Calendar datadecriacao = Calendar.getInstance();
 
-    public Aluno(String nome, String telefone, String email) {
+    public Calendar getDatadecriacao() {
+        return datadecriacao;
+    }
+
+    public void setDatadecriacao(Calendar datadecriacao) {
+        this.datadecriacao = datadecriacao;
+    }
+
+    @Ignore
+    public Aluno(String nome, String telefone, String email, String sobrenome) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+        this.sobrenome = sobrenome;
     }
 
 
@@ -59,4 +77,13 @@ public class Aluno implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
 }

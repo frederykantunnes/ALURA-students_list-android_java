@@ -2,7 +2,6 @@ package br.com.frederykantunnes.agenda.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,14 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import br.com.frederykantunnes.agenda.R;
-import br.com.frederykantunnes.agenda.dao.AlunoDAO;
+import br.com.frederykantunnes.agenda.database.AgendaDatabase;
+import br.com.frederykantunnes.agenda.database.dao.RoomAlunoDAO;
 import br.com.frederykantunnes.agenda.model.Aluno;
 
 public class TelaDeCadastro extends AppCompatActivity {
 
-    EditText camponome, campotelefone, campoemail;
+    EditText camponome, campotelefone, campoemail,camposobrenome;
     Button salvar;
-    AlunoDAO dao;
+    RoomAlunoDAO dao;
     Aluno aluno;
 
     @Override
@@ -26,7 +26,7 @@ public class TelaDeCadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Cadastrar Novo Aluno");
         setContentView(R.layout.activity_tela_de_cadastro);
-        dao = new AlunoDAO();
+        dao = AgendaDatabase.getInstance(this).getRoomAlunoDAO();
         inicializaViews();
         configuraBotaoSalvar();
 
@@ -39,6 +39,7 @@ public class TelaDeCadastro extends AppCompatActivity {
             camponome.setText(aluno.getNome());
             campoemail.setText(aluno.getEmail());
             campotelefone.setText(aluno.getTelefone());
+            camposobrenome.setText(aluno.getSobrenome());
         }else{
             aluno = new Aluno();
         }
@@ -46,6 +47,7 @@ public class TelaDeCadastro extends AppCompatActivity {
     public void inicializaViews(){
         camponome = findViewById(R.id.nome);
         campotelefone = findViewById(R.id.telefone);
+        camposobrenome = findViewById(R.id.sobrenome);
         campoemail = findViewById(R.id.email);
         salvar = findViewById(R.id.btn_salvar);
     }
@@ -75,12 +77,13 @@ public class TelaDeCadastro extends AppCompatActivity {
 
     public void salvar(){
         if (aluno.getNome()==null){
-            Aluno aluno = new Aluno(camponome.getText().toString(), campotelefone.getText().toString(), campoemail.getText().toString());
+            Aluno aluno = new Aluno(camponome.getText().toString(), campotelefone.getText().toString(), campoemail.getText().toString(),camposobrenome.getText().toString());
             dao.save(aluno);
         }else{
             aluno.setNome(camponome.getText().toString());
             aluno.setEmail(campoemail.getText().toString());
             aluno.setTelefone(campotelefone.getText().toString());
+            aluno.setSobrenome(campotelefone.getText().toString());
             dao.edit(aluno);
         }
         finish();

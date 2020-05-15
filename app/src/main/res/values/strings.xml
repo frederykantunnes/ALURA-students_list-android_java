@@ -6,4 +6,5 @@
     <string name="telefone_str">Telefone</string>
     <string name="email_str">Email</string>
     <string name="salvar_str">SALVAR</string>
+    <string name="sobrenome">Sobrenome</string>
 </resources>

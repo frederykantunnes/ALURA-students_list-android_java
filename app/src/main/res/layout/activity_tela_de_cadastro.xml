@@ -18,6 +18,15 @@
             tools:ignore="UnusedAttribute" />
 
         <EditText
+            android:id="@+id/sobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="sd"
+            android:hint="@string/sobrenome"
+            tools:ignore="UnusedAttribute" />
+
+        <EditText
             android:id="@+id/telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
